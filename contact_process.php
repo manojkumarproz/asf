@@ -1,37 +1,61 @@
 <?php
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
 
-    $to = "rockybd1995@gmail.com";
-    $from = $_REQUEST['email'];
-    $name = $_REQUEST['name'];
-    $subject = $_REQUEST['subject'];
-    $number = $_REQUEST['number'];
-    $cmessage = $_REQUEST['message'];
+    require 'vendor/autoload.php';
+    $config = require 'config/smtp_config.php';
 
-    $headers = "From: $from";
-	$headers = "From: " . $from . "\r\n";
-	$headers .= "Reply-To: ". $from . "\r\n";
-	$headers .= "MIME-Version: 1.0\r\n";
-	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+    $from = $_REQUEST['email'] ?? '';
+    $name = $_REQUEST['name'] ?? '';
+    $subject = $_REQUEST['subject'] ?? '';
+    $number = $_REQUEST['number'] ?? '';
+    $cmessage = $_REQUEST['message'] ?? '';
 
-    $subject = "You have a message from your Bitmap Photography.";
+    $mail = new PHPMailer(true);
 
-    $logo = 'img/logo.png';
-    $link = '#';
+    try {
+        // Server settings
+        $mail->SMTPDebug = 0; // Set to 2 for detailed debug output if needed
+        $mail->isSMTP();
+        $mail->Host       = $config['host'];
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $config['username'];
+        $mail->Password   = $config['password'];
+        $mail->SMTPSecure = $config['encryption'];
+        $mail->Port       = $config['port'];
 
-	$body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Express Mail</title></head><body>";
-	$body .= "<table style='width: 100%;'>";
-	$body .= "<thead style='text-align: center;'><tr><td style='border:none;' colspan='2'>";
-	$body .= "<a href='{$link}'><img src='{$logo}' alt=''></a><br><br>";
-	$body .= "</td></tr></thead><tbody><tr>";
-	$body .= "<td style='border:none;'><strong>Name:</strong> {$name}</td>";
-	$body .= "<td style='border:none;'><strong>Email:</strong> {$from}</td>";
-	$body .= "</tr>";
-	$body .= "<tr><td style='border:none;'><strong>Subject:</strong> {$csubject}</td></tr>";
-	$body .= "<tr><td></td></tr>";
-	$body .= "<tr><td colspan='2' style='border:none;'>{$cmessage}</td></tr>";
-	$body .= "</tbody></table>";
-	$body .= "</body></html>";
+        // Recipients
+        $mail->setFrom($config['from_email'], $config['from_name']);
+        $mail->addAddress($config['username']); // Sending to the company email
+        $mail->addReplyTo($from, $name);
 
-    $send = mail($to, $subject, $body, $headers);
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = "New Contact Form Submission: " . $subject;
 
+        $logo = 'img/logo.png';
+        $link = '#';
+
+        $body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Express Mail</title></head><body>";
+        $body .= "<table style='width: 100%;'>";
+        $body .= "<thead style='text-align: center;'><tr><td style='border:none;' colspan='2'>";
+        $body .= "<a href='{$link}'><img src='{$logo}' alt=''></a><br><br>";
+        $body .= "</td></tr></thead><tbody><tr>";
+        $body .= "<td style='border:none;'><strong>Name:</strong> {$name}</td>";
+        $body .= "<td style='border:none;'><strong>Email:</strong> {$from}</td>";
+        $body .= "</tr>";
+        $body .= "<tr><td style='border:none;'><strong>Number:</strong> {$number}</td></tr>";
+        $body .= "<tr><td style='border:none;'><strong>Subject:</strong> {$subject}</td></tr>";
+        $body .= "<tr><td></td></tr>";
+        $body .= "<tr><td colspan='2' style='border:none;'>{$cmessage}</td></tr>";
+        $body .= "</tbody></table>";
+        $body .= "</body></html>";
+
+        $mail->Body = $body;
+
+        $mail->send();
+        echo json_encode(['status' => 'success', 'message' => 'Message has been sent']);
+    } catch (Exception $e) {
+        echo json_encode(['status' => 'error', 'message' => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"]);
+    }
 ?>
