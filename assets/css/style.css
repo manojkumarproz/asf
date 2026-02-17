@@ -7302,3 +7302,28 @@ label.error {
     width: 100%;
     object-fit: cover;
 }
+
+/* Client Logo Styles */
+.single-client-logo {
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #f4f4f4;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+    transition: all .4s ease-out;
+    border-radius: 5px;
+}
+
+.single-client-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.single-client-logo:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    border-color: #ff5f13;
+}
