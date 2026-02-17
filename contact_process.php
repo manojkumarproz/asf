@@ -15,7 +15,7 @@
 
     try {
         // Server settings
-        $mail->SMTPDebug = 0; // Set to 2 for detailed debug output if needed
+        $mail->SMTPDebug = 0; 
         $mail->isSMTP();
         $mail->Host       = $config['host'];
         $mail->SMTPAuth   = true;
@@ -33,29 +33,72 @@
         $mail->isHTML(true);
         $mail->Subject = "New Contact Form Submission: " . $subject;
 
-        $logo = 'img/logo.png';
-        $link = '#';
+        $body = "
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+                .container { max-width: 600px; margin: 20px auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+                .header { background-color: #070b11; padding: 25px; text-align: center; border-bottom: 4px solid #ff5f13; }
+                .header h1 { color: #fff; margin: 0; font-size: 24px; letter-spacing: 1px; }
+                .content { padding: 30px; background-color: #fff; }
+                .footer { background-color: #f8f9fa; padding: 20px; text-align: center; font-size: 12px; color: #777; border-top: 1px solid #eee; }
+                .info-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                .info-table td { padding: 12px; border-bottom: 1px solid #eee; }
+                .info-table td:first-child { width: 100px; font-weight: bold; color: #ff5f13; }
+                .message-box { background-color: #f9f9f9; padding: 20px; border-radius: 5px; border-left: 4px solid #ff5f13; margin-top: 20px; white-space: pre-wrap; }
+                .label { display: inline-block; padding: 4px 10px; border-radius: 4px; background-color: #ff5f13; color: #fff; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <div class='header'>
+                    <h1>ASF ENTERPRISES</h1>
+                </div>
+                <div class='content'>
+                    <div class='label'>New Inquiry</div>
+                    <h2 style='color: #070b11; margin: 0 0 15px 0;'>Contact Form Submission</h2>
+                    <p>You have received a new inquiry from your website contact form.</p>
+                    
+                    <table class='info-table'>
+                        <tr>
+                            <td>Name:</td>
+                            <td>{$name}</td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><a href='mailto:{$from}' style='color: #1696e7; text-decoration: none;'>{$from}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Phone:</td>
+                            <td><a href='tel:{$number}' style='color: #1696e7; text-decoration: none;'>{$number}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Subject:</td>
+                            <td>{$subject}</td>
+                        </tr>
+                    </table>
 
-        $body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Express Mail</title></head><body>";
-        $body .= "<table style='width: 100%;'>";
-        $body .= "<thead style='text-align: center;'><tr><td style='border:none;' colspan='2'>";
-        $body .= "<a href='{$link}'><img src='{$logo}' alt=''></a><br><br>";
-        $body .= "</td></tr></thead><tbody><tr>";
-        $body .= "<td style='border:none;'><strong>Name:</strong> {$name}</td>";
-        $body .= "<td style='border:none;'><strong>Email:</strong> {$from}</td>";
-        $body .= "</tr>";
-        $body .= "<tr><td style='border:none;'><strong>Number:</strong> {$number}</td></tr>";
-        $body .= "<tr><td style='border:none;'><strong>Subject:</strong> {$subject}</td></tr>";
-        $body .= "<tr><td></td></tr>";
-        $body .= "<tr><td colspan='2' style='border:none;'>{$cmessage}</td></tr>";
-        $body .= "</tbody></table>";
-        $body .= "</body></html>";
+                    <h3 style='color: #070b11; margin: 25px 0 10px 0; border-bottom: 1px solid #eee; padding-bottom: 5px;'>Message Details</h3>
+                    <div class='message-box'>" . htmlspecialchars($cmessage) . "</div>
+                </div>
+                <div class='footer'>
+                    &copy; " . date('Y') . " ASF Enterprises. All rights reserved.<br>
+                    This is an automated notification from your website.
+                </div>
+            </div>
+        </body>
+        </html>";
 
         $mail->Body = $body;
 
         $mail->send();
         echo json_encode(['status' => 'success', 'message' => 'Message has been sent']);
     } catch (Exception $e) {
-        echo json_encode(['status' => 'error', 'message' => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"]);
+        echo json_encode([
+            'status' => 'error', 
+            'message' => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"
+        ]);
     }
 ?>
