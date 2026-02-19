@@ -2090,22 +2090,63 @@ hr {
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .section-padding30 {
-        padding-top: 183px;
+        padding-top: 143px;
         padding-bottom: 170px
+    }
+    .section-tittle span.back-text {
+        font-size: 140px;
+        font-weight: 800;
+        text-transform: uppercase;
+        -webkit-text-stroke: 1px #ecf4fa;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        line-height: 1;
+        position: absolute;
+        transform: translateY(-114%);
+        right: 0;
+        left: 12px
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .section-padding30 {
-        padding-top: 150px;
-        padding-bottom: 120px
+        padding-top: 50px;
+        padding-bottom: 70px
+    }
+
+    .section-tittle span.back-text {
+        font-size: 140px;
+        font-weight: 800;
+        text-transform: uppercase;
+        -webkit-text-stroke: 1px #ecf4fa;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        line-height: 1;
+        position: absolute;
+        transform: translateY(-114%);
+        right: 0;
+        left: 12px
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .section-padding30 {
-        padding-top: 100px;
+        padding-top: 70px;
         padding-bottom: 70px
+    }
+
+    .section-tittle span.back-text {
+        font-size: 120px;
+        font-weight: 800;
+        text-transform: uppercase;
+        -webkit-text-stroke: 1px #ecf4fa;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        line-height: 1;
+        position: absolute;
+        transform: translateY(-114%);
+        right: 0;
+        left: 12px
     }
 }
 
@@ -2118,8 +2159,22 @@ hr {
 
 @media (max-width: 575px) {
     .section-padding30 {
-        padding-top: 70px;
+        padding-top: 50px;
         padding-bottom: 20px
+    }
+
+    .section-tittle span.back-text {
+        font-size: 70px;
+        font-weight: 800;
+        text-transform: uppercase;
+        -webkit-text-stroke: 1px #ecf4fa;
+        -webkit-text-fill-color: transparent;
+        margin: 0;
+        line-height: 1;
+        position: absolute;
+        transform: translateY(-114%);
+        right: 0;
+        left: 12px
     }
 }
 
@@ -2241,11 +2296,11 @@ hr {
     }
 }
 
-.section-tittle span.back-text {
+/* .section-tittle span.back-text {
     font-size: 140px;
     font-weight: 800;
     text-transform: uppercase;
-    -webkit-text-stroke: 1px #f6f7f8;
+    -webkit-text-stroke: 1px #ecf4fa;
     -webkit-text-fill-color: transparent;
     margin: 0;
     line-height: 1;
@@ -2253,11 +2308,11 @@ hr {
     transform: translateY(-114%);
     right: 0;
     left: 12px
-}
+} */
 
 @media (max-width: 575px) {
     .section-tittle span.back-text {
-        font-size: 56px;
+        /* font-size: 56px; */
         transform: translateY(-136%)
     }
 }
@@ -2272,6 +2327,22 @@ hr {
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .section-tittle span.back-text {
         font-size: 127px
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .section-tittle.section-tittle2 .front-text h2 {
+        font-size: 75px !important
+    }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 992px) {
+    .section-tittle.section-tittle2 .front-text h2 {
+        font-size: 60px !important
+    }
+
+    .support-company-area .support-wrapper .left-content .support-caption {
+        padding-right: 20px !important
     }
 }
 
@@ -2303,7 +2374,8 @@ hr {
 
 @media only screen and (min-width: 1200px) and (max-width: 1440px) {
     .section-tittle.section-tittle2 span.back-text {
-        font-size: 119px
+        font-size: 119px;
+        margin-top: -30px
     }
 }
 
@@ -2329,15 +2401,17 @@ hr {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .section-tittle.section-tittle2 span.back-text {
-        font-size: 117px;
-        transform: translateY(-128%)
+        font-size: 68px;
+        transform: translateY(-128%);
+        margin-top: -20px;
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .section-tittle.section-tittle2 span.back-text {
-        font-size: 117px;
-        transform: translateY(-118%)
+        font-size: 96px;
+        transform: translateY(-118%);
+        margin-top: -20px
     }
 }
 
@@ -2507,13 +2581,13 @@ hr {
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .header-area .header-top {
-        padding: 13px 80px
+        padding: 13px 140px
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .header-area .header-top {
-        padding: 13px 15px
+        padding: 13px 50px
     }
 }
 
@@ -2541,19 +2615,20 @@ hr {
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .header-area .header-bottom {
-        padding: 0px 80px
+        padding: 0px 140px
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .header-area .header-bottom {
-        padding: 0px 15px
+        padding: 0px 50px
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .header-area .header-bottom {
-        padding: 10px 50px
+        /* padding: 10px 50px */
+        padding: 10px 25px
     }
 }
 
@@ -3275,12 +3350,14 @@ hr {
 .support-company-area .support-wrapper {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap
+    /* flex-wrap: wrap */
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .support-company-area .support-wrapper {
-        display: block
+        display: flex;
+        justify-content: space-between;
+
     }
 }
 
@@ -3336,6 +3413,12 @@ hr {
         width: 100%;
         padding-left: 30px
     }
+
+    .support-company-area .support-wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap
+    }
 }
 
 .support-company-area .support-wrapper .left-content .support-caption {
@@ -3385,7 +3468,7 @@ hr {
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .support-company-area .support-wrapper .right-content {
         width: 80%;
-        margin-left: 119px;
+        /* margin-left: 119px; */
         padding-top: 50px
     }
 }
@@ -4461,12 +4544,12 @@ hr {
     height: 40px;
     font-size: 14px;
     border: 1px solid #fafafa;
-    background: #fafafa;
+    /* background: #fafafa; */
     display: inline-block;
     line-height: 40px;
     text-align: center;
     color: #949eb2;
-    margin-right: 5px;
+    margin-right: 15px;
     -webkit-transition: all .4s ease-out 0s;
     -moz-transition: all .4s ease-out 0s;
     -ms-transition: all .4s ease-out 0s;
@@ -5815,7 +5898,7 @@ hr {
 }
 
 .form-contact .form-control {
-    border: 1px solid #e5e6e9;
+    border: 1px solid #999;
     border-radius: 0px;
     height: 48px;
     padding-left: 18px;
@@ -7326,4 +7409,18 @@ label.error {
 .single-client-logo:hover {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
     border-color: #ff5f13;
+}
+
+@media (min-width: 992px) {
+    .offset-lg-1 {
+        margin-left: 10px;
+    }
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
 }
